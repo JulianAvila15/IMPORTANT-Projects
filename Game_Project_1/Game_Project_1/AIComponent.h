@@ -17,7 +17,8 @@ public:
 	int temp;
 	int randomInterval;
 	
-	AIMovementComponent(){}
+
+	AIMovementComponent() {}
 
 	AIMovementComponent(SDL_Window* win)
 	{

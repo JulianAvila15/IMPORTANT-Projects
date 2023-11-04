@@ -1,20 +1,14 @@
-﻿  2DVector.cpp
-  AssetManager.cpp
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
+﻿  Game.cpp
+C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39,3): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
 C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\CollisonComponent.h(42,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\CollisonComponent.h(43,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  ECS.cpp
-  Game.cpp
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\CollisonComponent.h(42,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\CollisonComponent.h(43,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.cpp(104,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.cpp(103,19): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\ECS.h(90,33): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
           with
           [
               _Ty=int
           ]
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.cpp(79): message : see reference to function template instantiation 'T &Entity::addComponent<TransformComponent,float,int>(float &&,int &&)' being compiled
+C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.cpp(78,11): message : see reference to function template instantiation 'T &Entity::addComponent<TransformComponent,float,int>(float &&,int &&)' being compiled
           with
           [
               T=TransformComponent
@@ -24,13 +18,4 @@ C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\ECS.h(90,33):
           [
               _Ty=size_t
           ]
-  Main.cpp
-  The contents of <barrier> are available only with C++20 or later.
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
-  Map.cpp
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Map.cpp(8,20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  TextureManager.cpp
-C:\Users\jayli\Documents\Game Builds\Game_Project_1\Game_Project_1\Game.h(39): warning C4091: 'static ': ignored on left of 'Game::groupLabels' when no variable is declared
-  Generating Code...
   Game_Project_1.vcxproj -> C:\Users\jayli\Documents\Game Builds\Game_Project_1\x64\Debug\Game_Project_1.exe

@@ -64,7 +64,7 @@ public:
 	
 	void Update()
 	{
-     		for (auto& c : components) c->update();
+     		for (auto& c : components) if(this->isActive() == true) c->update();
 		
 	}
 
@@ -136,7 +136,7 @@ class Manager //Manage the components of game objects
 public:
 	void update()
 	{
-		for (auto& e : entities) if(e->isActive()) e ->Update();
+		for (auto& e : entities) if(e->isActive()==true) e ->Update();
 	}
 
 	void draw()

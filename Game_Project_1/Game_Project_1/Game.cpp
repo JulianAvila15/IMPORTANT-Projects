@@ -25,7 +25,6 @@ vector<Entity> EnemyType1;
 vector<Entity> playerBullets;
 
 SDL_Event Game::event;
-TransformComponent& positionTracker(newPlayer.addComponent<TransformComponent>());
 
 AssetManager* Game::assets = new AssetManager(&manager);
 
@@ -76,7 +75,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	//declare game objects
 
 	//player
-	newPlayer.addComponent<TransformComponent>( (SDL_GetWindowSurface(window)->w)/2.20f, SDL_GetWindowSurface(window)->h-200);
+	newPlayer.addComponent<TransformComponent>((SDL_GetWindowSurface(window)->w)/2.20f, SDL_GetWindowSurface(window)->h-200);
 	newPlayer.addComponent<SpriteComponent>("player");
 	newPlayer.addComponent<KeyboardContorller>();
 	newPlayer.addComponent<CollisionComponent>("Player");
@@ -181,9 +180,12 @@ void Game::update()
 	EnemyType1.at(i).Update();
 
 	for (size_t i = 0; i < playerBullets.size(); i++)
+	{
 		playerBullets.at(i).Update();
+	}
+		
 
-	if (playerBullets.size() > 10)
+	if (playerBullets.size()%10==0)
 	{
 		for (size_t i = 0; i < playerBullets.size(); i++)
 		{
@@ -192,9 +194,8 @@ void Game::update()
 				playerBullets.at(i).destroy();
 			}
 		}
-		manager.refresh();
-		vector<Entity>().swap(playerBullets);
-		playerBullets.clear();
+	
+		//vector<Entity>().swap(playerBullets); //Clear projectiles
 		
 	}
 
@@ -210,6 +211,7 @@ void Game::update()
 
 	//GameMap->LoadMap(new int [20][25]);
 
+	manager.refresh();
 	
 }
 
@@ -242,6 +244,8 @@ void Game::clean()
 		SDL_RenderClear(renderer);
 		SDL_DestroyWindow(window);
 		SDL_DestroyRenderer(renderer);
+		vector<Entity>().swap(playerBullets);
+		newPlayer.destroy();
 		cout << "Game Cleaned" << endl;
 	
 }
