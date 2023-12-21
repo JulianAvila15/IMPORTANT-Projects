@@ -69,9 +69,9 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	}
 
 	//add sprites of objects to asset manager
-	assets->AddTexture("player", "C:/Users/jayli/Documents/Game Builds/Game_Project_1/Game_Project_1/Assets/Player.png");
-	assets->AddTexture("enemy 1", "C:/Users/jayli/Documents/Game Builds/Game_Project_1/Game_Project_1/Assets/Enemy 1.png");
-	assets->AddTexture("projectile_test", "C:/Users/jayli/Documents/Game Builds/Game_Project_1/Game_Project_1/Assets/Player Bullet.png");
+	assets->AddTexture("player", "D:/Unity repos/IMPORTANT - Projects/Game_Project_1/Game_Project_1/Assets/Player.png");
+	assets->AddTexture("enemy 1", "D:/Unity repos/IMPORTANT - Projects/Game_Project_1/Game_Project_1/Assets/Enemy 1.png");
+	assets->AddTexture("projectile_test", "D:/Unity repos/IMPORTANT - Projects/Game_Project_1/Game_Project_1/Assets/Player Bullet.png");
 
 	//declare game objects
 
@@ -208,7 +208,7 @@ void Game::update()
 	//	}
 	//}
 
-	//GameMap->LoadMap(new int [20][25]);
+	GameMap->LoadMap(new int [20][25]);
 
 	
 }
@@ -232,8 +232,11 @@ void Game::render()
 
 		for (size_t i = 0; i < playerBullets.size(); i++)
 			playerBullets.at(i).draw();
-
+		
+		
 		SDL_RenderPresent(renderer);
+		
+	
 }
 
 void Game::clean()

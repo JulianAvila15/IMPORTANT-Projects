@@ -14,8 +14,8 @@ int lvl1[20][25];
 
 
 Map::Map() {
-	space = TextureManager::LoadTexture("C:/Users/jayli/Documents/Game Builds/Game_Project_1/Game_Project_1/Assets/space.png");
-	stars = TextureManager::LoadTexture("C:/Users/jayli/Documents/Game Builds/Game_Project_1/Game_Project_1/Assets/Star.png");
+	space = TextureManager::LoadTexture("D:/Unity repos/IMPORTANT - Projects/Game_Project_1/Game_Project_1/Assets/space.png");
+	stars = TextureManager::LoadTexture("D:/Unity repos/IMPORTANT-Projects/Game_Project_1/Game_Project_1/Assets/Star.png");
 	randomizeMap(lvl1);
 	LoadMap(lvl1);
 
