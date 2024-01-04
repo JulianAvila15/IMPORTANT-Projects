@@ -24,6 +24,13 @@ let platformWidth = 60;
 let platformHeight = 18;
 let platformImg;  //load image for platform
 
+//Score variables
+let score = 0;
+let scoreText;
+
+//Lose Status variable
+let youLose;
+
 let doodler={
     img:null,
     x: doodlerX,
@@ -39,6 +46,8 @@ window.onload = function(){
     context = board.getContext("2d");
     velocityY = initialVelocityY;
 
+    scoreText=document.getElementById("score");
+    youLose = document.getElementById("you lose");
     //draw the doodler
     // context.fillStyle = "";
     // context.fillRect(doodler.x,doodler.y,doodler.width,doodler.height);
@@ -72,7 +81,7 @@ function update()
     context.clearRect(0,0,board.width,board.height);
   
     context.drawImage(doodler.img,doodler.x,doodler.y,doodler.width,doodler.height);
-   
+    scoreText.innerHTML="Score: "+ score;
     //If doodler goes off screen bring it back to the canvas
     if(doodler.x>boardWidth)
     {
@@ -101,7 +110,9 @@ function update()
 
          //detect collision between platform and doodler
          if(DetectCollision(doodler,platform)&&velocityY>=0)
+         {
          velocityY = initialVelocityY;//jump
+         }
 
         context.drawImage(platform.img,platform.x,platform.y,platform.width,platform.height);
     }
@@ -112,6 +123,10 @@ function update()
             CreateNewPlatform();
          }
    
+         if(doodler.y>boardHeight)
+         {
+            youLose.innerHTML="You Lose! Press ctrl/cmd + R to restart!";
+         }
 }
 
 function moveDoodler(e)
@@ -189,11 +204,14 @@ function CreateNewPlatform(){
     platform = {
         img: platformImg,
         x: randomXorY(0,(boardWidth*(3/4))),
-        y: boardWidth*1/4,
+        y: 0,
         width: platformWidth,
         height:platformHeight
     }
     platformArray.push(platform);
+
+    //when a new platform is created increment the score
+    score++;
 }
 function randomXorY(min, max) {
     return Math.random() * (max - min) + min;
