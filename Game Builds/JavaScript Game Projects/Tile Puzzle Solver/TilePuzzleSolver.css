@@ -1,0 +1,47 @@
+h1
+{
+    text-align:center;
+    color:blue;
+}
+p
+{
+    text-align:center;
+    color:black;
+}
+.Puzzle
+{
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: auto;
+    padding: 5px;
+    align-items: center;
+    margin-left: 45%;
+    margin-right: 45%;
+}
+  .Tile{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .InputCell
+  {
+    border: none; 
+    width: 10px; 
+    height: 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 15px; 
+    text-align: center; 
+  }
+  
+  .SolveButton
+  {
+    width:50px;
+    height:30px;
+    color:yellowgreen;
+    background-color:black;
+  }

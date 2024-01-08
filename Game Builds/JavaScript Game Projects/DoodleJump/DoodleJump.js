@@ -54,7 +54,7 @@ window.onload = function(){
     
     //Get doodler's right image
     doodlerRightImg = new Image();
-    doodlerRightImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/doodler-right.png";
+    doodlerRightImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/DoodleJump/Assets/doodler-right.png";
     doodler.img = doodlerRightImg;
 
     doodlerRightImg.onload=function(){
@@ -63,11 +63,11 @@ window.onload = function(){
 
     //Get doodler's left image
      doodlerLeftImg = new Image();
-     doodlerLeftImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/doodler-left.png";
+     doodlerLeftImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/DoodleJump/Assets/doodler-left.png";
 
      //Get platform image
      platformImg = new Image();
-     platformImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/platform.png";
+     platformImg.src = "D:/Git Repositories/IMPORTANT-Projects/Game Builds/JavaScript Game Projects/DoodleJump/Assets/platform.png";
  
     
     placePlatforms();
