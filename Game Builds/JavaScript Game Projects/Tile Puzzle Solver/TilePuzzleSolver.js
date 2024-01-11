@@ -8,35 +8,21 @@ class Vector extends Array{
 
 //Create a class for the Puzzle state
 class PuzzleState{
-    PuzzleState(){this.rows=0; this.cols=0;}
-    PuzzleState(n,m){
-        this.tiles = tiles[n*m];
+    constructor(n,m){
+        this.tiles = [n*m];
         this.rows=n;
         this.cols=m;
-    }
-   
-    //Copy Constructor
-    PuzzleState(other)
-    {
-        if(other instanceof PuzzleState)
-        {
-            this.PuzzleState = other.PuzzleState
-        }
-        else
-        {
-            this.PuzzleState = other
-        }
     }
 
     IsEqual(other)
     {
-        return this.PuzzleState.tiles==other.tiles;
-    }
+        for(i=0;i<numOfTiles;i++)
+        {
+            if(this.tiles[i]!=other.tiles[i])
+            return false;
+        }
     
-    
-    IsNotEqual(other)
-    {
-        return this.PuzzleState.tiles==other.tiles;
+        return true;
     }
 
     Size()
@@ -86,29 +72,29 @@ class PuzzleState{
 
     canMoveUp()
     {
-        return blank_position_row>0;
+        return this.blank_position_row>0;
     }
 
     canMoveDown()
     {
-        return blank_position_row +1 <this.rows;
+        return this.blank_position_row +1 <this.rows;
     }
 
     canMoveLeft()
     {
-        return blank_position_col>0;
+        return this.blank_position_col>0;
     }
 
     canMoveRight()
     {
-        return blank_position_col<cols-1;
+        return this.blank_position_col<this.cols-1;
     }
 
     moveBlankUp()
     {
-        tempVal = this.tiles[((this.blank_position_row*this.cols)+this.blank_position_col)-this.rows]//get index of number on top of the blank's index
+        this.tempVal = this.tiles[((this.blank_position_row*this.cols)+this.blank_position_col)-this.rows]//get index of number on top of the blank's index
         this.tiles[((this.blank_position_row*this.cols)+this.blank_position_col)-this.rows] = this.tiles[((this.blank_position_row*this.cols))+this.blank_position_col];//Move blank position into the position above it
-        this.tiles[(blank_position_row*cols)+blank_position_col] = tempVal;//Move number in the index above blank's position to the blank's position
+        this.tiles[(this.blank_position_row*this.cols)+this.blank_position_col] = this.tempVal;//Move number in the index above blank's position to the blank's position
         this.blank_position_row--;//decrement the row that the blank position is in
 
         return this;
@@ -116,9 +102,9 @@ class PuzzleState{
 
     moveBlankDown()
     {
-        tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + this.rows];//get index of number below the blank's index
+        this.tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + this.rows];//get index of number below the blank's index
         this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + this.rows] = this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col];//Move blank position into the position below it
-        this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = tempVal;//Move number in the index below blank's position to the blank's position
+        this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = this.tempVal;//Move number in the index below blank's position to the blank's position
         this.blank_position_row++;//increment the row that the blank position is in
 
         return this;
@@ -126,9 +112,9 @@ class PuzzleState{
 
     moveBlankLeft()
     {
-        tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) - 1];//get index of number to the left of the blank's index
+        this.tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) - 1];//get index of number to the left of the blank's index
         this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) - 1] = this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col];//Move blank to the left
-        this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = tempVal; //move number in the index to the left of the blank's position
+        this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = this.tempVal; //move number in the index to the left of the blank's position
         this.blank_position_col--;//decrement the column that the blank position is in
 
         return this;
@@ -136,9 +122,9 @@ class PuzzleState{
 
     moveBlankRight()
     {
-    tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + 1];//get index of number to the right of the blank's index
+    this.tempVal = this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + 1];//get index of number to the right of the blank's index
     this.tiles[((this.blank_position_row * this.cols) + this.blank_position_col) + 1] = this.tiles[this.blank_position_row * this.cols+ this.blank_position_col];//Move blank to the right
-   this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = tempVal;//Move number in the index to the right of the blank's position
+   this.tiles[(this.blank_position_row * this.cols) + this.blank_position_col] = this.tempVal;//Move number in the index to the right of the blank's position
     this.blank_position_col++;//increment the column that the blank position is in
 
     return this;
@@ -181,5 +167,81 @@ class PuzzleMove{
     }
 }
 
-// //Get tiles
-// let Tiles=[];
+//board
+let initial_state;
+let goal_state;
+let rows_and_cols=3;
+let solution = Vector[0];
+let ids=[];
+let numOfTiles=9;
+
+window.onload = function(){
+  
+}
+
+function Solve()
+{
+    initial_state=new PuzzleState(rows_and_cols,rows_and_cols);
+    goal_state= new PuzzleState(rows_and_cols,rows_and_cols);
+
+    ids.push("b1");
+    ids.push("b2");
+    ids.push("b3");
+    ids.push("b4");
+    ids.push("b5");
+    ids.push("b6");
+    ids.push("b7");
+    ids.push("b8");
+    ids.push("b9");
+
+     for(i=0;i<numOfTiles-1;i++)
+     {
+         goal_state.tiles[i]=i+1;
+     }
+
+     goal_state.tiles.push(0);
+
+     for(i=0;i<numOfTiles;i++)
+     {
+         initial_state.tiles[i] = document.getElementById(ids[i]).value;
+
+         if(initial_state.tiles[i]==0)
+         {
+            initial_state.blank_position_col = i%rows_and_cols;
+            initial_state.blank_position_row = Math.floor(i/rows_and_cols);
+         }
+     }
+    
+    while(initial_state.canMoveUp())
+    {
+    initial_state.moveBlankUp();
+        setTimeout(() => {
+        DisplayBoard();
+          }, 1000);
+    }
+   
+
+    // while(initial_state.canMoveRight())
+    // initial_state.moveBlankRight();
+
+    // while(initial_state.canMoveDown())
+    // initial_state.moveBlankDown();
+
+    // while(initial_state.canMoveLeft())
+    // initial_state.moveBlankLeft();
+
+     //base case, inital is already equal to the goal state
+    if(initial_state.IsEqual(goal_state))
+    document.getElementById("demo").innerHTML="Solved, inital state = goal state";
+    
+}
+
+
+function DisplayBoard(){
+    
+    for(i=0;i<numOfTiles;i++)
+    {
+      document.getElementById(ids[i]).value =  initial_state.tiles[i];
+    }
+
+}
