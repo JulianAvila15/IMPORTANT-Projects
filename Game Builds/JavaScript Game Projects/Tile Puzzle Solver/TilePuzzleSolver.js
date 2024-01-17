@@ -13,7 +13,14 @@ class PuzzleState{
         this.rows=n;
         this.cols=m;
     }
-
+    SetEqual(other)
+    {
+        this.tiles=[];
+        for(i=0;i<numOfTiles;i++)
+        {
+            this.tiles.push(other.tiles[i]);
+        }
+    }
     IsEqual(other)
     {
         for(i=0;i<numOfTiles;i++)
@@ -171,7 +178,7 @@ class PuzzleMove{
 let initial_state;
 let goal_state;
 let rows_and_cols=3;
-let solution = Vector[0];
+let solution = [];
 let ids=[];
 let numOfTiles=9;
 
@@ -179,9 +186,10 @@ window.onload = function(){
   
 }
 
-function Solve()
-{
+function Main()
+{   
     initial_state=new PuzzleState(rows_and_cols,rows_and_cols);
+
     goal_state= new PuzzleState(rows_and_cols,rows_and_cols);
 
     ids.push("b1");
@@ -194,6 +202,8 @@ function Solve()
     ids.push("b8");
     ids.push("b9");
 
+
+    //Make goal puzzle state
      for(i=0;i<numOfTiles-1;i++)
      {
          goal_state.tiles[i]=i+1;
@@ -201,6 +211,7 @@ function Solve()
 
      goal_state.tiles.push(0);
 
+     //Retrieve data
      for(i=0;i<numOfTiles;i++)
      {
          initial_state.tiles[i] = document.getElementById(ids[i]).value;
@@ -211,37 +222,41 @@ function Solve()
             initial_state.blank_position_row = Math.floor(i/rows_and_cols);
          }
      }
-    
-    while(initial_state.canMoveUp())
-    {
-    initial_state.moveBlankUp();
-        setTimeout(() => {
-        DisplayBoard();
-          }, 1000);
-    }
-   
 
-    // while(initial_state.canMoveRight())
-    // initial_state.moveBlankRight();
+     //Solve Puzzle
+     Solve();
 
-    // while(initial_state.canMoveDown())
-    // initial_state.moveBlankDown();
+    //show solution
+    if(solution.length>0)
+    RunThroughSolution(solution);
 
-    // while(initial_state.canMoveLeft())
-    // initial_state.moveBlankLeft();
-
-     //base case, inital is already equal to the goal state
-    if(initial_state.IsEqual(goal_state))
-    document.getElementById("demo").innerHTML="Solved, inital state = goal state";
     
 }
 
+function Solve()
+{
+     //base case, inital is already equal to the goal state
+     if(initial_state.IsEqual(goal_state))
+     document.getElementById("demo").innerHTML="Solved, inital state already equals the goal state";
 
-function DisplayBoard(){
+}
+
+function DisplayBoard(boardToBeDisplayed){
     
     for(i=0;i<numOfTiles;i++)
     {
-      document.getElementById(ids[i]).value =  initial_state.tiles[i];
+      document.getElementById(ids[i]).value =  boardToBeDisplayed.tiles[i];
     }
 
 }
+
+function RunThroughSolution(puzzleSolution)
+{
+for(let i=0; i<puzzleSolution.length;i++)
+{
+     setTimeout(() => {
+        DisplayBoard(puzzleSolution[i]);
+          }, 1000*i);
+}
+}
+
