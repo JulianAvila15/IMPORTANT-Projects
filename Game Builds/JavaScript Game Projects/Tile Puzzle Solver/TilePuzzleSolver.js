@@ -181,9 +181,22 @@ let rows_and_cols=3;
 let solution = [];
 let ids=[];
 let numOfTiles=9;
+let goalMap=new Map();
+
 
 window.onload = function(){
   
+}
+
+function makeGoalMap(mappedGoalState, goalState)
+{
+    colsAndRows=new Map();
+
+    for(i=0;i<goalState.getTiles.length;i++)
+    {
+        colsAndRows.set((i+1)/mappedGoalState.getColsandRows(),(i%goalState.getColsandRows()+1));//get the cols and rows of the certain element i in the goal state
+        mappedGoalState.set(goalState.getTiles[i],colsAndRows);
+    }
 }
 
 function Main()
@@ -223,8 +236,16 @@ function Main()
          }
      }
 
-     //Solve Puzzle
-     Solve();
+     makeGoalMap(goalMap,goal_state);
+
+     //base case, inital is already equal to the goal state
+     if(initial_state.IsEqual(goal_state))
+     document.getElementById("demo").innerHTML="Solved, inital state already equals the goal state";
+    else if(Solve())
+     //Solve The Puzzle
+     RunThroughSolution();
+    else
+    document.getElementById("demo").innerHTML="No Solution";
 
     //show solution
     if(solution.length>0)
@@ -233,11 +254,36 @@ function Main()
     
 }
 
+function CalculateManhattan(currentPuzzleState,mapOfGoalState)
+{
+    manhattan = 0;
+    searchTiles = currentPuzzleState.getTiles();
+    x=y=0;
+
+    for(i=0;i<currentPuzzleState.getTiles().length;i++)
+    {
+    if (searchTiles.getTiles[i] != 0)
+    {
+	x = mapOfGoalState.get(searchTiles.at(i)).keys() - (i+1 / currentPuzzleState.getColsandRows()); //((X2 - X1), 
+															// i.e: x of the current tile for the goal state - x of the current tile for the current move's state
+	if (x < 0) //if x is a negative number, make it positive
+		x *= -1;
+
+	y = goal_map.get(searchTiles.at(i)).values() - ((i % current.getColsandRows())+1); //(Y2 - Y1)
+																	//i.e: x of the current tile for the goal state - x of the current tile for the current move's state
+	if (y < 0) //if y is a negative number, make it positive
+		y *= -1;
+	
+	manhattan += x + y;  //abs((x2-x1)+(y2-y1))
+    }
+    }
+}
+
 function Solve()
 {
-     //base case, inital is already equal to the goal state
-     if(initial_state.IsEqual(goal_state))
-     document.getElementById("demo").innerHTML="Solved, inital state already equals the goal state";
+    findSolution=false;
+
+     return foundSolution;
 
 }
 
